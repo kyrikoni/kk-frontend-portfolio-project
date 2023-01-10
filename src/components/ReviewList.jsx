@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { getReviews } from "../api";
 
 export const ReviewList = () => {
-  // create useEffect to invoke getReviews() and pull in the data (which is an array of objects)
-
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
