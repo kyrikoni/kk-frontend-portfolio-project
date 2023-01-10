@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getReviews } from "../api";
+import { ReviewCard } from "./ReviewCard";
 
-export const ReviewList = () => {
+export const ReviewList = ({ isLoading, setIsLoading }) => {
   const [reviews, setReviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -20,23 +20,7 @@ export const ReviewList = () => {
       <h2>Find a Review for all of your favourite tabletop games!</h2>
       <ul>
         {reviews.map((review) => {
-          return (
-            <div className="ReviewCard" key={review.review_id}>
-              <p>Title: {review.title}</p>
-              <p>Category: {review.category}</p>
-              <p>Owner: {review.owner}</p>
-              <p>
-                <img
-                  className="ReviewImages"
-                  src={review.review_img_url}
-                  alt={review.title}
-                />
-              </p>
-              <p>
-                <button>Full Review</button>
-              </p>
-            </div>
-          );
+          return <ReviewCard key={review.review_id} review={review} />;
         })}
       </ul>
     </section>
