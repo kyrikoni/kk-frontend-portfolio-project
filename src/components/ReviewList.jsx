@@ -21,7 +21,7 @@ export const ReviewList = () => {
       <ul>
         {reviews.map((review) => {
           return (
-            <li className="ReviewCard" key={review.review_id}>
+            <div className="ReviewCard" key={review.review_id}>
               <p>Title: {review.title}</p>
               <p>Category: {review.category}</p>
               <p>Owner: {review.owner}</p>
@@ -35,7 +35,7 @@ export const ReviewList = () => {
               <p>
                 <button>Full Review</button>
               </p>
-            </li>
+            </div>
           );
         })}
       </ul>
