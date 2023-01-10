@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const ReviewCard = ({ review }) => {
   return (
     <div className="ReviewCard" key={review.review_id}>
@@ -8,11 +10,13 @@ export const ReviewCard = ({ review }) => {
         <img
           className="ReviewImages"
           src={review.review_img_url}
-          alt={review.title}
+          alt={`image of ${review.title}`}
         />
       </p>
       <p>
-        <button>Full Review</button>
+        <Link to={`/reviews/${review.review_id}`}>
+          <button>Full Review</button>
+        </Link>
       </p>
     </div>
   );

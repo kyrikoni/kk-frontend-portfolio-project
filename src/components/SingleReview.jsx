@@ -25,7 +25,7 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
         <img
           className="ReviewImages"
           src={singleReview.review_img_url}
-          alt={singleReview.title}
+          alt={`image of ${singleReview.title}`}
         />
       </p>
       <p>{singleReview.review_body}</p>
