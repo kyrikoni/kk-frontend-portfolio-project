@@ -30,10 +30,7 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
       </p>
       <p>{singleReview.review_body}</p>
       <p>
-        Total Likes - {singleReview.votes}
-        <br />
-        <button>Thumbs Up</button>
-        <button>Thumbs Down</button>
+        <button>👍</button> {singleReview.votes} <button>👎</button>
       </p>
       <Comments />
     </section>
