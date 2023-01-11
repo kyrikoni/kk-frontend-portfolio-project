@@ -2,15 +2,20 @@ import { getReviewComments } from "../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export const Comments = () => {
+export const Comments = ({}) => {
   const [comments, setComments] = useState([]);
+  const [isCommentsLoading, setIsCommentsLoading] = useState(true);
   const { review_id } = useParams();
 
   useEffect(() => {
+    setIsCommentsLoading(true);
     getReviewComments(review_id).then((comments) => {
       setComments(comments);
+      setIsCommentsLoading(false);
     });
   }, [review_id]);
+
+  if (isCommentsLoading) return <p>Loading Comments...</p>;
 
   return (
     <section>
