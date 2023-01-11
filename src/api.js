@@ -12,6 +12,13 @@ export const getReviews = () => {
 
 export const getSingleReview = (review_id) => {
   return gamesApi.get(`/api/reviews/${review_id}`).then((res) => {
+    console.log(res.data.review);
     return res.data.review;
+  });
+};
+
+export const getReviewComments = (review_id) => {
+  return gamesApi.get(`/api/reviews/${review_id}/comments`).then((res) => {
+    return res.data.comments;
   });
 };

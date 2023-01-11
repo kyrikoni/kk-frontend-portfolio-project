@@ -1,3 +1,3 @@
 export const Homepage = () => {
-  return <h1>Welcome to NC Games, the ultimate table-top review website!</h1>;
+  return <h2>Welcome to NC Games, the ultimate table-top review website!</h2>;
 };
