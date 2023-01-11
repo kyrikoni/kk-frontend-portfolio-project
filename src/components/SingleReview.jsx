@@ -11,6 +11,7 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
   const { review_id } = useParams();
 
   useEffect(() => {
+    setErr(null);
     setIsLoading(true);
     getSingleReview(review_id).then((review) => {
       setSingleReview(review);
@@ -58,6 +59,7 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
           👎
         </button>
       </p>
+      <p>{err}</p>
       <Comments singleReview={singleReview} />
     </section>
   );
