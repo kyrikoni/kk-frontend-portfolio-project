@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Comments } from "./Comments";
-import { getSingleReview } from "../api";
+import { getSingleReview, patchReviewVotes } from "../api";
 
 export const SingleReview = ({ isLoading, setIsLoading }) => {
   const [singleReview, setSingleReview] = useState({});
+  const [reviewVoteCount, setReviewVoteCount] = useState(0);
+  const [err, setErr] = useState(null);
+
   const { review_id } = useParams();
 
   useEffect(() => {
@@ -14,6 +17,15 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
       setIsLoading(false);
     });
   }, [review_id]);
+
+  const handleReviewVotes = (newVote) => {
+    setReviewVoteCount((currVotes) => currVotes + newVote);
+    setErr(null);
+    patchReviewVotes(review_id, newVote).catch((err) => {
+      setReviewVoteCount((currVotes) => currVotes - newVote);
+      setErr("Something went wrong, please try again.");
+    });
+  };
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -30,7 +42,21 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
       </p>
       <p>{singleReview.review_body}</p>
       <p>
-        <button>👍</button> {singleReview.votes} <button>👎</button>
+        <button
+          onClick={() => {
+            handleReviewVotes(+1);
+          }}
+        >
+          👍
+        </button>
+        {singleReview.votes + reviewVoteCount}
+        <button
+          onClick={() => {
+            handleReviewVotes(-1);
+          }}
+        >
+          👎
+        </button>
       </p>
       <Comments singleReview={singleReview} />
     </section>

@@ -28,9 +28,7 @@ export const Comments = ({ singleReview }) => {
                 {comment.author} - {comment.created_at}
               </p>
               <p>{comment.body}</p>
-              <p>
-                <button>👍</button> {comment.votes} <button>👎</button>
-              </p>
+              <p>Votes: {comment.votes}</p>
             </div>
           );
         })}
