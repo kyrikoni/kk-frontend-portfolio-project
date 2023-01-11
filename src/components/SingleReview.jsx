@@ -32,7 +32,7 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
       <p>
         <button>👍</button> {singleReview.votes} <button>👎</button>
       </p>
-      <Comments />
+      <Comments singleReview={singleReview} />
     </section>
   );
 };

@@ -12,6 +12,7 @@ export const getReviews = () => {
 
 export const getSingleReview = (review_id) => {
   return gamesApi.get(`/api/reviews/${review_id}`).then((res) => {
+    console.log(res.data.review);
     return res.data.review;
   });
 };

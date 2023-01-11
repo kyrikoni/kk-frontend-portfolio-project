@@ -2,7 +2,7 @@ import { getReviewComments } from "../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export const Comments = ({}) => {
+export const Comments = ({ singleReview }) => {
   const [comments, setComments] = useState([]);
   const [isCommentsLoading, setIsCommentsLoading] = useState(true);
   const { review_id } = useParams();
@@ -19,7 +19,7 @@ export const Comments = ({}) => {
 
   return (
     <section>
-      <h3>Comments</h3>
+      <h3>{singleReview.comment_count} Comments</h3>
       <ul>
         {comments.map((comment) => {
           return (
