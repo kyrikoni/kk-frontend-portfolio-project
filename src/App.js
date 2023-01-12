@@ -28,6 +28,12 @@ function App() {
             <SingleReview isLoading={isLoading} setIsLoading={setIsLoading} />
           }
         />
+        <Route
+          path="/reviews/categories/:category"
+          element={
+            <ReviewList isLoading={isLoading} setIsLoading={setIsLoading} />
+          }
+        />
       </Routes>
     </div>
   );
