@@ -27,3 +27,14 @@ export const patchReviewVotes = (review_id, newVote) => {
     inc_votes: newVote,
   });
 };
+
+export const postReviewComment = (review_id, newComment) => {
+  return gamesApi
+    .post(`/reviews/${review_id}/comments`, {
+      username: "tickle122",
+      body: newComment,
+    })
+    .then((res) => {
+      return res.data.comment;
+    });
+};
