@@ -1,3 +1,3 @@
 export const Header = () => {
-  return <h1 className="Header">NC Games</h1>;
+  return <h1>NC Games</h1>;
 };

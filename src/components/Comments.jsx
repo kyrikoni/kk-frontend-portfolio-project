@@ -22,6 +22,7 @@ export const Comments = ({ singleReview }) => {
   const handleReviewComment = (e) => {
     e.preventDefault();
     setErr(null);
+    console.log(buttonRef);
     buttonRef.current.disabled = true;
     postReviewComment(review_id, newReviewComment)
       .then((newComment) => {
