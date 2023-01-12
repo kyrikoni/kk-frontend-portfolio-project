@@ -5,16 +5,24 @@ import { ReviewCard } from "./ReviewCard";
 
 export const ReviewList = ({ isLoading, setIsLoading }) => {
   const [reviews, setReviews] = useState([]);
+  const [err, setErr] = useState(null);
 
   const { category } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews(category).then((reviewList) => {
-      setReviews(reviewList);
-      setIsLoading(false);
-    });
-  }, [category]);
+    getReviews(category)
+      .then((reviewList) => {
+        setReviews(reviewList);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setErr("Page not found");
+        setIsLoading(false);
+      });
+  }, [category, setIsLoading]);
+
+  if (err) return <p>{err}</p>;
 
   if (isLoading) return <p>Loading...</p>;
 
