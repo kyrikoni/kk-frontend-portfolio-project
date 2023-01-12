@@ -6,6 +6,7 @@ export const Comments = ({ singleReview }) => {
   const [comments, setComments] = useState([]);
   const [isCommentsLoading, setIsCommentsLoading] = useState(true);
   const [newReviewComment, setNewReviewComment] = useState("");
+  const [reviewCommentCount, setReviewCommentCount] = useState(0);
   const [err, setErr] = useState(null);
   const { review_id } = useParams();
   const commentId = useId();
@@ -28,6 +29,7 @@ export const Comments = ({ singleReview }) => {
       buttonRef.current.disabled = true;
       postReviewComment(review_id, newReviewComment)
         .then((newComment) => {
+          setReviewCommentCount(reviewCommentCount + 1);
           setComments((currComments) => {
             buttonRef.current.disabled = null;
             return [newComment, ...currComments];
@@ -35,7 +37,9 @@ export const Comments = ({ singleReview }) => {
           setNewReviewComment("");
         })
         .catch((err) => {
-          setErr("Something went wrong, please try again.");
+          setErr(
+            "Something went wrong, please refresh the page and try again."
+          );
         });
     }
   };
@@ -63,7 +67,7 @@ export const Comments = ({ singleReview }) => {
         </p>
       </form>
       <p>{err}</p>
-      <h3>{singleReview.comment_count} Comments</h3>
+      <h3>{+singleReview.comment_count + reviewCommentCount} Comments</h3>
       <ul>
         {comments.map((comment) => {
           return (
