@@ -21,18 +21,23 @@ export const Comments = ({ singleReview }) => {
 
   const handleReviewComment = (e) => {
     e.preventDefault();
-    setErr(null);
-    console.log(buttonRef);
-    buttonRef.current.disabled = true;
-    postReviewComment(review_id, newReviewComment)
-      .then((newComment) => {
-        setComments((currComments) => {
-          return [newComment, ...currComments];
+    if (newReviewComment === "") {
+      alert("Please enter a valid comment");
+    } else {
+      setErr(null);
+      buttonRef.current.disabled = true;
+      postReviewComment(review_id, newReviewComment)
+        .then((newComment) => {
+          setComments((currComments) => {
+            buttonRef.current.disabled = null;
+            return [newComment, ...currComments];
+          });
+          setNewReviewComment("");
+        })
+        .catch((err) => {
+          setErr("Something went wrong, please try again.");
         });
-      })
-      .catch((err) => {
-        setErr("Something went wrong, please try again.");
-      });
+    }
   };
 
   if (isCommentsLoading) return <p>Loading Comments...</p>;
@@ -47,7 +52,6 @@ export const Comments = ({ singleReview }) => {
           id={commentId}
           value={newReviewComment}
           placeholder="Write your comment here"
-          minLength={1}
           rows={4}
           cols={40}
           onChange={(e) => setNewReviewComment(e.target.value)}
