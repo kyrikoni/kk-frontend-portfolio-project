@@ -4,10 +4,12 @@ const gamesApi = axios.create({
   baseURL: "https://kk-backend-portfolio-project.onrender.com/api",
 });
 
-export const getReviews = (category) => {
-  return gamesApi.get("/reviews", { params: { category } }).then((res) => {
-    return res.data.reviews;
-  });
+export const getReviews = (category, sort_by, order) => {
+  return gamesApi
+    .get("/reviews", { params: { category, sort_by, order } })
+    .then((res) => {
+      return res.data.reviews;
+    });
 };
 
 export const getSingleReview = (review_id) => {
