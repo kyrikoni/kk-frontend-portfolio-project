@@ -60,15 +60,15 @@ export const ReviewList = ({ isLoading, setIsLoading }) => {
       </div>
       <select value={sortByValue} onChange={handleQueryChange}>
         <option hidden>Sort By</option>
+        <option value="created_at">Date Created</option>
         <option value="title">Title</option>
         <option value="owner">Owner</option>
-        <option value="created_at">Date Created</option>
         <option value="votes">Votes</option>
       </select>
       <select value={orderValue} onChange={handleOrderChange}>
         <option hidden>Order By</option>
-        <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
+        <option value="asc">Ascending</option>
       </select>
       <ul>
         {reviews.map((review) => {
