@@ -8,7 +8,6 @@ export const getReviews = (category, sort_by, order) => {
   return gamesApi
     .get("/reviews", { params: { category, sort_by, order } })
     .then((res) => {
-      console.log(res.request.responseURL);
       return res.data.reviews;
     });
 };
