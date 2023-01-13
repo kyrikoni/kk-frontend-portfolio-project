@@ -80,7 +80,8 @@ p {
   padding-right: 10%;
 }
 
-button {
+button,
+select {
   background-color: #8c7851;
   color: #fffffe;
   border-radius: 5px;

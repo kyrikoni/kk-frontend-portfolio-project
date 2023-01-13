@@ -7,12 +7,16 @@ export const ReviewCard = ({ review }) => {
       <p>Category: {review.category}</p>
       <p>Owner: {review.owner}</p>
       <p>
+        Created At: {review.created_at} | Votes: {review.votes}
+      </p>
+      <p>
         <img
           className="ReviewImages"
           src={review.review_img_url}
           alt={`image of ${review.title}`}
         />
       </p>
+
       <p>
         <Link to={`/reviews/${review.review_id}`}>
           <button>Full Review</button>
