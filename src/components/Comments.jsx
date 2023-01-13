@@ -1,6 +1,12 @@
-import { getReviewComments, postReviewComment } from "../api";
+import {
+  getReviewComments,
+  postReviewComment,
+  deleteReviewComment,
+  getUsers,
+} from "../api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useId, useRef } from "react";
+import userEvent from "@testing-library/user-event";
 
 export const Comments = ({ singleReview }) => {
   const [comments, setComments] = useState([]);
@@ -44,6 +50,35 @@ export const Comments = ({ singleReview }) => {
     }
   };
 
+  const handleDeleteComment = (comment_id) => {
+    getUsers()
+      .then((users) => {
+        console.log(users);
+        return users;
+      })
+      .then((users) => {
+        if (users.username !== comments.author) {
+          alert("Cannot delete another users comment");
+        } else {
+          setErr(null);
+          deleteReviewComment(comment_id)
+            .then(() => {
+              setComments((currComments) => {
+                setReviewCommentCount(reviewCommentCount - 1);
+                return currComments.filter(
+                  (comment) => comment.comment_id !== comment_id
+                );
+              });
+            })
+            .catch((err) => {
+              setErr(
+                "Something went wrong, please refresh the page and try again."
+              );
+            });
+        }
+      });
+  };
+
   if (isCommentsLoading) return <p>Loading Comments...</p>;
 
   return (
@@ -76,6 +111,15 @@ export const Comments = ({ singleReview }) => {
                 {comment.author} - {comment.created_at}
               </p>
               <p>{comment.body}</p>
+              <p>
+                <button
+                  ref={buttonRef}
+                  onClick={() => handleDeleteComment(comment.comment_id)}
+                >
+                  Delete Comment
+                </button>
+              </p>
+              <p>{err}</p>
             </div>
           );
         })}
