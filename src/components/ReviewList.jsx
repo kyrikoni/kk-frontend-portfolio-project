@@ -7,15 +7,19 @@ export const ReviewList = ({ isLoading, setIsLoading }) => {
   const [reviews, setReviews] = useState([]);
   const [err, setErr] = useState(null);
   const [sort_by, setSortBy] = useState();
+  const [sortByValue, setSortByValue] = useState("");
   const [order, setOrder] = useState();
+  const [orderValue, setOrderValue] = useState("");
 
   const { category } = useParams();
 
   const handleQueryChange = (e) => {
+    setSortByValue(e.target.value);
     setSortBy(e.target.value);
   };
 
   const handleOrderChange = (e) => {
+    setOrderValue(e.target.value);
     setOrder(e.target.value);
   };
 
@@ -27,7 +31,6 @@ export const ReviewList = ({ isLoading, setIsLoading }) => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setErr("Page not found");
         setIsLoading(false);
       });
@@ -55,14 +58,14 @@ export const ReviewList = ({ isLoading, setIsLoading }) => {
         <span> | </span>
         <Link to="/reviews/categories/engine-building">Engine Building</Link>
       </div>
-      <select onChange={handleQueryChange}>
+      <select value={sortByValue} onChange={handleQueryChange}>
         <option hidden>Sort By</option>
         <option value="title">Title</option>
         <option value="owner">Owner</option>
         <option value="created_at">Date Created</option>
         <option value="votes">Votes</option>
       </select>
-      <select onChange={handleOrderChange}>
+      <select value={orderValue} onChange={handleOrderChange}>
         <option hidden>Order By</option>
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
