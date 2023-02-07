@@ -13,10 +13,17 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
   useEffect(() => {
     setErr(null);
     setIsLoading(true);
-    getSingleReview(review_id).then((review) => {
-      setSingleReview(review);
-      setIsLoading(false);
-    });
+    getSingleReview(review_id)
+      .then((review) => {
+        setSingleReview(review);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(Object.keys(err.response));
+        console.log(err.response.data);
+        setErr(err.response.data.msg);
+        setIsLoading(false);
+      });
   }, [review_id]);
 
   const handleReviewVotes = (newVote) => {
@@ -30,7 +37,7 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
 
   if (isLoading) return <p>Loading...</p>;
 
-  return (
+  return err === null ? (
     <section>
       <h2>{singleReview.title}</h2>
       <h3>Author - {singleReview.owner}</h3>
@@ -59,8 +66,10 @@ export const SingleReview = ({ isLoading, setIsLoading }) => {
           👎
         </button>
       </p>
-      <p>{err}</p>
+
       <Comments singleReview={singleReview} />
     </section>
+  ) : (
+    <p>{err}</p>
   );
 };

@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Northcoders House of Games - Front End/UI React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Background
 
-## Available Scripts
+NC Games is a board game review client demo, built in React.js.
 
-In the project directory, you can run:
+This project aims to demonstrate some of the skills learnt in the frontend part of the Northcoders bootcamp, specifically React subjects including:
 
-### `npm start`
+- React Virtual DOM
+- React Lifecycle
+- React Routing
+- Optimistic Rendering
+- Error Handling
+- API requests and handling/displaying response data
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend Hosted Version**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The hosted version of this frontend client demo can be found at https://kk-nc-games.netlify.app/
 
-### `npm test`
+This frontend application interacts with the backend NC Games RESTful API created during the backend part of the course.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**API Hosted Version**
 
-### `npm run build`
+The hosted version of the API can be found here: <https://kk-backend-portfolio-project.onrender.com/api>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The gitHub repository can be found here: <https://github.com/kyrikoni/kk-backend-portfolio-project>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Functionality
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Reviews and Category Routes**
 
-### `npm run eject`
+When you click on 'Reviews' in the navigation bar, the demo requests all reviews held on the backend API database. These are able to be selected to view each review in more detail.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Each category has it's own unique link in the sub-nav which filters out the correct reviews per category.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+On this page, the articles can be sorted by:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- date created
+- title
+- owner
+- votes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Each sort function can also be ordered in either ascending or descending order.
 
-## Learn More
+**Individual Reviews**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The Review component requests and displays a review based on the supplied route. It displays the full article and the associated meta data:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- author
+- title
+- review body
+- votes
+- comment count
+- all comments associated with said review
 
-### Code Splitting
+Users may:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- upvote the review by clicking on the thumbs up button
+- downvote the review by clicking on the thumbs down button
+- post new comments to the review
+- delete their own comment (the demo simulates the user to be 'tickle122', so you can only delete this user's comments)
 
-### Analyzing the Bundle Size
+**Errors**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Bad route errors result in the relevant 400/404 page.
 
-### Making a Progressive Web App
+API errors result in the API error status code and message being displayed to the user.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Prerequisites
 
-### Advanced Configuration
+Please ensure the following are installed on your client as a minimum version:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Node**: v19.0.0
+- **Node Package Manager**: v8.19.2
 
-### Deployment
+## Initial Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+To set up your own repository, please follow the instructions below.
 
-### `npm run build` fails to minify
+1. Copy the code from the repository and clone it to your client locally, using the following command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   `git clone https://github.com/kyrikoni/kk-frontend-portfolio-project`
+
+2. Once it has been successfully cloned, access and open the directory using your code editor of choice (e.g. VSCode):
+
+    ```
+    cd kk-frontend-portfolio-project/
+    code .
+    ```
+
+3. Inside this directory, install the necessary npm packages by running the following command in the terminal:
+
+    `npm install`
+
+4. To start the application, run the following code in the terminal:
+
+    `npm start`
+
+_If an error occurs in any of the previous two steps, ensure that you are in the correct directory and try again._
+
+## Built Using
+
+- React.js
+- Axios
+- HTML
+- CSS
