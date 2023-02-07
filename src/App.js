@@ -5,6 +5,7 @@ import { Nav } from "./components/Nav";
 import { ReviewList } from "./components/ReviewList";
 import { Homepage } from "./components/Homepage";
 import { SingleReview } from "./components/SingleReview";
+import ErrorPage from "./ErrorPage";
 import { useState } from "react";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <ReviewList isLoading={isLoading} setIsLoading={setIsLoading} />
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
