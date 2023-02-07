@@ -46,3 +46,7 @@ export const getCategoryReviews = () => {
     return res.data.categories;
   });
 };
+
+export const deleteReviewComment = (comment_id) => {
+  return gamesApi.delete(`/comments/${comment_id}`);
+};
