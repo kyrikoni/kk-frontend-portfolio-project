@@ -13,7 +13,7 @@ export const ReviewCard = ({ review }) => {
         <img
           className="ReviewImages"
           src={review.review_img_url}
-          alt={`image of ${review.title}`}
+          alt={review.title}
         />
       </p>
 
